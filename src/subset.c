@@ -45,6 +45,8 @@
 /*									 */
 /*************************************************************************/
 
+double alpha=0.25;
+double q=1/(1-alpha);
 
 void InitialiseBellNumbers()
 /*   ---------------------  */
@@ -238,7 +240,7 @@ void EvalSubset(Attribute Att, CaseCount Cases)
 
     ForEach(V1, 1, GEnv.Blocks)
     {
-	GEnv.SubsetInfo[V1] = -GEnv.ValFreq[V1] * Log(GEnv.ValFreq[V1] / Cases);
+	GEnv.SubsetInfo[V1] = q*((pow(GEnv.ValFreq[V1],alpha)-1) / Cases);
 	GEnv.SubsetEntr[V1] = TotalInfo(GEnv.Freq[V1], 1, MaxClass);
     }
 
@@ -367,7 +369,6 @@ void Merge(DiscrValue x, DiscrValue y, CaseCount Cases)
     double	Entr=0;
     CaseCount	KnownCases=0;
     int		R, C;
-
     AddBlock(x, y);
 
     ForEach(c, 1, MaxClass)
