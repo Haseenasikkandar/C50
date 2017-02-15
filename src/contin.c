@@ -36,9 +36,8 @@
 
 #include "transform.h"
 #include "redefine.h"
-#define alpha .25
-
-#define	PartInfo(n) ((1/(1-alpha))*((pow(n,alpha)-1))
+#define alpha 0.25
+#define	PartInfo(n) (1/(1-alpha))*(pow(n,alpha)-1)
 
 
 /*************************************************************************/
@@ -143,7 +142,10 @@ void EvalContinuousAtt(Attribute Att, CaseNo Fp, CaseNo Lp)
 		    LeastInfo = LHInfo;
 		    BestI     = i;
 
-		    BestInfo = (GEnv.FixedSplitInfo+ PartInfo(GEnv.LowCases)+ PartInfo(GEnv.ApplicCases - GEnv.LowCases));
+		    BestInfo = (GEnv.FixedSplitInfo
+				+ PartInfo(GEnv.LowCases)
+				+ PartInfo(GEnv.ApplicCases - GEnv.LowCases));
+			       // GEnv.Cases;
 		}
 
 		Verbosity(3,
@@ -151,7 +153,7 @@ void EvalContinuousAtt(Attribute Att, CaseNo Fp, CaseNo Lp)
 		    fprintf(Of, "\t\tCut at %.3f  (gain %.3f):",
 			   (GEnv.LowVal + GEnv.HighVal) / 2,
 			   (1 - GEnv.UnknownRate) *
-			   (GEnv.BaseInfo - (GEnv.NAInfo + LHInfo) ));
+			   (GEnv.BaseInfo - (GEnv.NAInfo + LHInfo))); // GEnv.KnownCases));
 		    PrintDistribution(Att, 2, 3, GEnv.Freq, GEnv.ValFreq, true);
 		})
 	    }
@@ -161,7 +163,7 @@ void EvalContinuousAtt(Attribute Att, CaseNo Fp, CaseNo Lp)
     }
 
     BestGain = (1 - GEnv.UnknownRate) *
-	       (GEnv.BaseInfo - (GEnv.NAInfo + LeastInfo) );
+	       (GEnv.BaseInfo - (GEnv.NAInfo + LeastInfo)); // GEnv.KnownCases);
 
     /*  The threshold cost is the lesser of the cost of indicating the
 	cases to split between or the interval containing the split  */
@@ -278,10 +280,10 @@ void EstimateMaxGR(Attribute Att, CaseNo Fp, CaseNo Lp)
 
 		SplitInfo = (GEnv.FixedSplitInfo
 			    + PartInfo(GEnv.LowCases)
-			    + PartInfo(GEnv.ApplicCases - GEnv.LowCases));
+			    + PartInfo(GEnv.ApplicCases - GEnv.LowCases)); // GEnv.Cases;
 
 		ThisGain = (1 - GEnv.UnknownRate) *
-			   (GEnv.BaseInfo - (GEnv.NAInfo + LHInfo));
+			   (GEnv.BaseInfo - (GEnv.NAInfo + LHInfo)); // GEnv.KnownCases);
 		if ( ThisGain > Gain[Att] ) Gain[Att] = ThisGain;
 
 		/*  Adjust GR to make it more conservative upper bound  */
@@ -420,7 +422,7 @@ void PrepareForContin(Attribute Att, CaseNo Fp, CaseNo Lp)
 	    GEnv.Freq[0][c] = GEnv.Freq[1][c] + GEnv.Freq[3][c];
 	}
 
-	GEnv.BaseInfo = TotalInfo(GEnv.Freq[0], 1, MaxClass) ;
+	GEnv.BaseInfo = TotalInfo(GEnv.Freq[0], 1, MaxClass); // GEnv.KnownCases;
     }
     else
     {
