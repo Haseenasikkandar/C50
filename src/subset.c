@@ -34,7 +34,6 @@
 
 #include "defns.h"
 #include "extern.h"
-#include "global.c"
 #include "transform.h"
 #include "redefine.h"
 
