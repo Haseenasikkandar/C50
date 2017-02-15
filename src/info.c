@@ -34,7 +34,6 @@
 
 #include "defns.h"
 #include "extern.h"
-#include "global.c"
 #include "transform.h"
 #include "redefine.h"
 
@@ -85,9 +84,9 @@ double TotalInfo(double V[], DiscrValue MinVal, DiscrValue MaxVal)
 /*     ---------  */
 {
     DiscrValue	v;
-    double	Sum=0.0, TotalCases=0;//alpha=0.25;
+    double	Sum=0.0, TotalCases=0,alpha=0.25;
     CaseCount	N;
-	//double q= 1/(1-alpha);
+	double q= 1/(1-alpha);
     ForEach(v, MinVal, MaxVal)
     {
 	N = V[v];
