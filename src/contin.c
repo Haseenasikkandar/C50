@@ -38,7 +38,7 @@
 #include "redefine.h"
 #define alpha .25
 
-#define	PartInfo(n) ((1/(1-alpha))*((pow(n,alpha)-1)/GEnv.Cases))
+#define	PartInfo(n) ((1/(1-alpha))*((pow(n,alpha)-1))
 
 
 /*************************************************************************/
@@ -146,7 +146,7 @@ void EvalContinuousAtt(Attribute Att, CaseNo Fp, CaseNo Lp)
 		    BestInfo = (GEnv.FixedSplitInfo
 				+ PartInfo(GEnv.LowCases)
 				+ PartInfo(GEnv.ApplicCases - GEnv.LowCases))
-			       / GEnv.Cases;
+			      ;
 		}
 
 		Verbosity(3,
@@ -154,7 +154,7 @@ void EvalContinuousAtt(Attribute Att, CaseNo Fp, CaseNo Lp)
 		    fprintf(Of, "\t\tCut at %.3f  (gain %.3f):",
 			   (GEnv.LowVal + GEnv.HighVal) / 2,
 			   (1 - GEnv.UnknownRate) *
-			   (GEnv.BaseInfo - (GEnv.NAInfo + LHInfo) / GEnv.KnownCases));
+			   (GEnv.BaseInfo - (GEnv.NAInfo + LHInfo) ));
 		    PrintDistribution(Att, 2, 3, GEnv.Freq, GEnv.ValFreq, true);
 		})
 	    }
@@ -164,7 +164,7 @@ void EvalContinuousAtt(Attribute Att, CaseNo Fp, CaseNo Lp)
     }
 
     BestGain = (1 - GEnv.UnknownRate) *
-	       (GEnv.BaseInfo - (GEnv.NAInfo + LeastInfo) / GEnv.KnownCases);
+	       (GEnv.BaseInfo - (GEnv.NAInfo + LeastInfo) );
 
     /*  The threshold cost is the lesser of the cost of indicating the
 	cases to split between or the interval containing the split  */
@@ -281,10 +281,10 @@ void EstimateMaxGR(Attribute Att, CaseNo Fp, CaseNo Lp)
 
 		SplitInfo = (GEnv.FixedSplitInfo
 			    + PartInfo(GEnv.LowCases)
-			    + PartInfo(GEnv.ApplicCases - GEnv.LowCases)) / GEnv.Cases;
+			    + PartInfo(GEnv.ApplicCases - GEnv.LowCases));
 
 		ThisGain = (1 - GEnv.UnknownRate) *
-			   (GEnv.BaseInfo - (GEnv.NAInfo + LHInfo) / GEnv.KnownCases);
+			   (GEnv.BaseInfo - (GEnv.NAInfo + LHInfo));
 		if ( ThisGain > Gain[Att] ) Gain[Att] = ThisGain;
 
 		/*  Adjust GR to make it more conservative upper bound  */
@@ -423,7 +423,7 @@ void PrepareForContin(Attribute Att, CaseNo Fp, CaseNo Lp)
 	    GEnv.Freq[0][c] = GEnv.Freq[1][c] + GEnv.Freq[3][c];
 	}
 
-	GEnv.BaseInfo = TotalInfo(GEnv.Freq[0], 1, MaxClass) / GEnv.KnownCases;
+	GEnv.BaseInfo = TotalInfo(GEnv.Freq[0], 1, MaxClass) ;
     }
     else
     {
