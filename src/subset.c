@@ -44,8 +44,7 @@
 /*									 */
 /*************************************************************************/
 
-double alpha=0.25;
-
+const double alpha=0.25;
 
 void InitialiseBellNumbers()
 /*   ---------------------  */
@@ -80,7 +79,7 @@ void InitialiseBellNumbers()
 void EvalSubset(Attribute Att, CaseCount Cases)
 /*   ----------  */
 {
-	double q=1/(1-alpha);
+    double q=1/(1-alpha);
     DiscrValue	V1, V2, V3, BestV1, BestV2, InitialBlocks, First=1, Prelim=0;
     ClassNo	c;
     double	BaseInfo, ThisGain, ThisInfo, Penalty, UnknownRate,
