@@ -145,8 +145,7 @@ void EvalContinuousAtt(Attribute Att, CaseNo Fp, CaseNo Lp)
 
 		    BestInfo = (GEnv.FixedSplitInfo
 				+ PartInfo(GEnv.LowCases)
-				+ PartInfo(GEnv.ApplicCases - GEnv.LowCases))
-			      ;
+				+ PartInfo(GEnv.ApplicCases - GEnv.LowCases));
 		}
 
 		Verbosity(3,
