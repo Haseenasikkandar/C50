@@ -70,8 +70,7 @@ float		CF=0.25,	/* confidence limit for tree pruning */
 
 Boolean		LOCK=false;	/* sample locked */
 
-double alpha=0.25;
-double q=1/(1-alpha);
+
 
 /*************************************************************************/
 /*									 */
