@@ -45,7 +45,7 @@
 /*************************************************************************/
 
 double alpha=0.25;
-double q=1/(1-alpha);
+
 
 void InitialiseBellNumbers()
 /*   ---------------------  */
@@ -80,6 +80,7 @@ void InitialiseBellNumbers()
 void EvalSubset(Attribute Att, CaseCount Cases)
 /*   ----------  */
 {
+	double q=1/(1-alpha);
     DiscrValue	V1, V2, V3, BestV1, BestV2, InitialBlocks, First=1, Prelim=0;
     ClassNo	c;
     double	BaseInfo, ThisGain, ThisInfo, Penalty, UnknownRate,
@@ -364,6 +365,7 @@ void EvalSubset(Attribute Att, CaseCount Cases)
 void Merge(DiscrValue x, DiscrValue y, CaseCount Cases)
 /*   -----  */
 {
+	double q=1/(1-alpha);
     ClassNo	c;
     double	Entr=0;
     CaseCount	KnownCases=0;
@@ -425,6 +427,7 @@ void Merge(DiscrValue x, DiscrValue y, CaseCount Cases)
 void EvaluatePair(DiscrValue x, DiscrValue y, CaseCount Cases)
 /*   ------------  */
 {
+	double q=1/(1-alpha);
     ClassNo	c;
     double	Entr=0;
     CaseCount	KnownCases=0, F;
